@@ -1,14 +1,17 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
+import HeaderComponent from "../components/Header";
+import SafeScreen from "../components/SafeScreen";
 
-
-function ExpensesScreen(props) {
- return (
-  <View style={styles.container}><Text>Expenses screen</Text></View>
- );
+function ExpensesScreen({ navigation }) {
+  return (
+    <SafeScreen>
+      <HeaderComponent navigation={navigation} />
+    </SafeScreen>
+  );
 }
 
 const styles = StyleSheet.create({
-    container:{flex:1,justifyContent:"center"}
-})
-export default ExpensesScreen
+  container: { flex: 1, justifyContent: "center" },
+});
+export default ExpensesScreen;

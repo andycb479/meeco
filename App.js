@@ -7,25 +7,34 @@ import ExpensesScreen from "./assets/screens/ExpensesScreen";
 import IncomesScreen from "./assets/screens/IncomesScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { Text } from "react-native";
+import BottomTab from "./assets/components/BottomTab";
+import AccountSettingsScreen from "./assets/screens/AccountSettingsScreen";
+import DrawerScreen from "./assets/screens/DrawerScreen";
+import AddExpenseScreen from "./assets/screens/AddExpenseScreen";
+import AddIncomeScreen from "./assets/screens/AddIncomeScreen";
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator
+    initialRouteName="Home"
     tabBarOptions={{
       showLabel: false,
       tabStyle: {
         backgroundColor: "white",
       },
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray",
+      activeTintColor: "black",
+      inactiveTintColor: "white",
+      activeBackgroundColor: "black",
     }}
   >
     <Tab.Screen
       name="Expenses"
       component={ExpensesScreen}
       options={{
-        tabBarIcon: ({ color, size }) => (
-          <Text style={{ color: color }}>Expenses</Text>
+        tabBarIcon: ({ focused, color, size }) => (
+          <BottomTab focused={focused} color={color}>
+            Expenses
+          </BottomTab>
         ),
       }}
     />
@@ -33,8 +42,10 @@ const TabNavigator = () => (
       name="Home"
       component={HomeScreen}
       options={{
-        tabBarIcon: ({ color, size }) => (
-          <Text style={{ color: color }}>Home</Text>
+        tabBarIcon: ({ focused, color, size }) => (
+          <BottomTab focused={focused} color={color}>
+            Home
+          </BottomTab>
         ),
       }}
     />
@@ -42,8 +53,10 @@ const TabNavigator = () => (
       name="Incomes"
       component={IncomesScreen}
       options={{
-        tabBarIcon: ({ color, size }) => (
-          <Text style={{ color: color }}>Incomes</Text>
+        tabBarIcon: ({ focused, color, size }) => (
+          <BottomTab focused={focused} color={color}>
+            Incomes
+          </BottomTab>
         ),
       }}
     />
@@ -61,6 +74,12 @@ export default function App() {
       >
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Main" component={TabNavigator} />
+        <Stack.Screen
+          name="AccountSettings"
+          component={AccountSettingsScreen}
+        />
+        <Stack.Screen name="AddExpense" component={AddExpenseScreen} />
+        <Stack.Screen name="AddIncome" component={AddIncomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
