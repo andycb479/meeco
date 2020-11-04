@@ -3,11 +3,11 @@ import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function BackStackNavigation({ navigation }) {
+function BackStackNavigation({ navigation, style }) {
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Home")}>
       <MaterialCommunityIcons
-        style={styles.icon}
+        style={[styles.ico, style]}
         name="chevron-left"
         size={38}
         color="black"

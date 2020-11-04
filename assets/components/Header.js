@@ -6,14 +6,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 function HeaderComponent({ navigation }) {
   return (
     <View style={styles.header}>
-      <MaterialIcons style={styles.icon} name="menu" size={38} color="black" />
+      <MaterialIcons
+        style={styles.icon}
+        name="menu"
+        size={38}
+        color="#231f20"
+      />
       <Image style={styles.logo} source={require("../src/logo.png")} />
       <TouchableOpacity onPress={() => navigation.navigate("AccountSettings")}>
         <MaterialIcons
           style={styles.icon}
           name="account-circle"
           size={38}
-          color="black"
+          color="#231f20"
         />
       </TouchableOpacity>
     </View>

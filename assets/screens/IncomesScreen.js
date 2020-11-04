@@ -1,13 +1,13 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import HeaderComponent from "../components/Header";
-import SafeScreen from "../components/SafeScreen";
+import Screen from "../components/Screen";
 
 function IncomesScreen({ navigation }) {
   return (
-    <SafeScreen>
+    <Screen>
       <HeaderComponent navigation={navigation} />
-    </SafeScreen>
+    </Screen>
   );
 }
 
