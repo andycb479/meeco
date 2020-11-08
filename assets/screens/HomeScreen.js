@@ -15,17 +15,52 @@ import HomeScreenIcon from "../components/HomeScreenIcon";
 import { LinearGradient } from "expo-linear-gradient";
 
 function HomeScreen({ navigation }) {
-  const [activeIndex, setActiveIndex] = useState("car");
+  data = {
+    Car: 673,
+    Food: 1029,
+    Entertaiment: 456,
+    Home: 121,
+    Services: 84,
+    Medicine: 531,
+    Sport: 876,
+    Shopping: 231,
+  };
+  const handler = (active) => {
+    setActiveIndex(active);
+    setActiveAmount(data[active.title]);
+  };
+  const [activeIndex, setActiveIndex] = useState({ title: "Car", icon: "car" });
+  const [activeAmount, setActiveAmount] = useState(data.Car);
   return (
     <Screen style={styles.container}>
       <HeaderComponent navigation={navigation} />
       <View style={styles.viewContainer}>
         <View style={styles.rowContainer}>
           <View style={styles.firstRow}>
-            <HomeScreenIcon title="Car" icon="car" />
-            <HomeScreenIcon title="Food" icon="silverware-fork-knife" />
-            <HomeScreenIcon title="Entertaiment" icon="glass-cocktail" />
-            <HomeScreenIcon title="Home" icon="home" />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Car"
+              icon="car"
+              onPress={handler}
+            />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Food"
+              icon="silverware-fork-knife"
+              onPress={handler}
+            />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Entertaiment"
+              icon="glass-cocktail"
+              onPress={handler}
+            />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Home"
+              icon="home"
+              onPress={handler}
+            />
           </View>
         </View>
         <View style={styles.tool}>
@@ -38,9 +73,9 @@ function HomeScreen({ navigation }) {
             start={[1, 0]}
             end={[0, 1]}
           >
-            <Text style={styles.cirleText}>567 lei</Text>
+            <Text style={styles.cirleText}>{activeAmount} lei</Text>
             <MaterialCommunityIcons
-              name="car"
+              name={activeIndex.icon}
               color="white"
               size={50}
               style={{ marginTop: 10 }}
@@ -52,10 +87,30 @@ function HomeScreen({ navigation }) {
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.firstRow}>
-            <HomeScreenIcon title="Services" icon="bank" />
-            <HomeScreenIcon title="Medicine" icon="medical-bag" />
-            <HomeScreenIcon title="Sport" icon="spa" />
-            <HomeScreenIcon title="Shopping" icon="cart" />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Services"
+              icon="bank"
+              onPress={handler}
+            />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Medicine"
+              icon="medical-bag"
+              onPress={handler}
+            />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Sport"
+              icon="spa"
+              onPress={handler}
+            />
+            <HomeScreenIcon
+              active={activeIndex.title}
+              title="Shopping"
+              icon="cart"
+              onPress={handler}
+            />
           </View>
         </View>
       </View>
@@ -64,7 +119,7 @@ function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: { backgroundColor: "white" },
   viewContainer: {
     flex: 1,
     flexDirection: "column",
@@ -78,9 +133,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   circleInfo: {
-    width: 190,
-    height: 190,
-    borderRadius: 95,
+    width: 210,
+    height: 210,
+    borderRadius: 105,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 45,
@@ -91,7 +146,7 @@ const styles = StyleSheet.create({
   },
   cirleText: {
     color: "white",
-    fontSize: 30,
+    fontSize: 33,
   },
   rowContainer: {
     width: "100%",

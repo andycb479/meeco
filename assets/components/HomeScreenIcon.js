@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function HomeScreenIcon({ title, icon }) {
-  var [isPress, setIsPress] = useState(false);
+function HomeScreenIcon({ active, title, icon, onPress }) {
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        isPress ? setIsPress(false) : setIsPress(true);
+        onPress({ title, icon });
+        //console.log(active);
       }}
     >
-      {isPress ? (
+      {active == title ? (
         <View style={styles.container}>
           <View style={[styles.iconBox, styles.active]}>
             <MaterialCommunityIcons color={"white"} size={30} name={icon} />

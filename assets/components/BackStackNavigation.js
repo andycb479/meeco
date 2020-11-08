@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 function BackStackNavigation({ navigation, style }) {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+    <TouchableOpacity onPress={() => navigation.goBack()}>
       <MaterialCommunityIcons
         style={[styles.ico, style]}
         name="chevron-left"
