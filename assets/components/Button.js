@@ -1,16 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 import colors from "../config/colors";
 
-function AppButton({ title, onPress, color = "primary" }) {
+function AppButton({ from, to, title, onPress, color = "primary" }) {
   return (
-    <TouchableOpacity
-      style={[styles.button, { backgroundColor: colors[color] }]}
-      onPress={onPress}
+    <LinearGradient
+      style={styles.button}
+      colors={[from, to]}
+      start={[1, 0]}
+      end={[0, 1]}
     >
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styles.text}>{title}</Text>
+      </TouchableOpacity>
+    </LinearGradient>
   );
 }
 

@@ -109,7 +109,7 @@ function AddExpensesScreen({ navigation }) {
           numberOfLines={3}
           placeholder="Description"
         />
-        <SubmitButton title="Add Income" />
+        <SubmitButton from="#20bf5a" to="#01bbec" title="Add Income" />
       </Form>
     </Screen>
   );

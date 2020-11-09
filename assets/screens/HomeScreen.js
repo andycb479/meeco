@@ -65,7 +65,7 @@ function HomeScreen({ navigation }) {
         </View>
         <View style={styles.tool}>
           <TouchableOpacity onPress={() => navigation.navigate("AddExpense")}>
-            <MaterialCommunityIcons name="minus" size={40} color="#808285" />
+            <MaterialCommunityIcons name="minus" size={40} color="#ec008c" />
           </TouchableOpacity>
           <LinearGradient
             style={styles.circleInfo}
@@ -82,7 +82,7 @@ function HomeScreen({ navigation }) {
             ></MaterialCommunityIcons>
           </LinearGradient>
           <TouchableOpacity onPress={() => navigation.navigate("AddIncome")}>
-            <MaterialCommunityIcons name="plus" size={40} color="#808285" />
+            <MaterialCommunityIcons name="plus" size={40} color="#20bf5a" />
           </TouchableOpacity>
         </View>
         <View style={styles.rowContainer}>

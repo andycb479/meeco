@@ -12,7 +12,6 @@ import AccountSettingsScreen from "./assets/screens/AccountSettingsScreen";
 import DrawerScreen from "./assets/screens/DrawerScreen";
 import AddExpenseScreen from "./assets/screens/AddExpenseScreen";
 import AddIncomeScreen from "./assets/screens/AddIncomeScreen";
-
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator
