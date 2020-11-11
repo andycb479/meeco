@@ -1,16 +1,15 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function BackStackNavigation({ navigation, style }) {
+function BackStackNavigation({ navigation, style = null }) {
   return (
-    <TouchableOpacity
-      style={[styles.ico, style]}
-      onPress={() => navigation.goBack()}
-    >
-      <MaterialCommunityIcons name="chevron-left" size={38} color="black" />
-    </TouchableOpacity>
+    <View style={style}>
+      <TouchableOpacity style={styles.ico} onPress={() => navigation.goBack()}>
+        <MaterialCommunityIcons name="chevron-left" size={38} color="black" />
+      </TouchableOpacity>
+    </View>
   );
 }
 

@@ -36,7 +36,7 @@ function AccountSettingsScreen({ navigation }) {
       <View style={styles.container}>
         <View style={styles.myAcc}>
           <View style={styles.topBar}>
-            <BackStackNavigation navigation={navigation} />
+            <BackStackNavigation style={{ flex: 1 }} navigation={navigation} />
             <Text style={styles.text}>My account</Text>
           </View>
           <Image
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   myAcc: {
+    width: "100%",
     paddingTop: 15,
     alignItems: "center",
     flex: 1,
@@ -77,13 +78,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   topBar: {
+    width: "100%",
+    justifyContent: "center",
+    alignContent: "center",
     flexDirection: "row",
-    alignContent: "flex-start",
-    alignSelf: "flex-start",
-    justifyContent: "space-between",
     marginBottom: 30,
   },
   text: {
+    flex: 2,
     fontSize: 24,
     alignSelf: "center",
   },
