@@ -5,13 +5,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 function BackStackNavigation({ navigation, style }) {
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
-      <MaterialCommunityIcons
-        style={[styles.ico, style]}
-        name="chevron-left"
-        size={38}
-        color="black"
-      />
+    <TouchableOpacity
+      style={[styles.ico, style]}
+      onPress={() => navigation.goBack()}
+    >
+      <MaterialCommunityIcons name="chevron-left" size={38} color="black" />
     </TouchableOpacity>
   );
 }
