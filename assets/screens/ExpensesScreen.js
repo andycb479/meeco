@@ -1,15 +1,24 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Button, Modal } from "react-native";
 import ChartComponenent from "../components/ChartComponenent";
 import HeaderComponent from "../components/Header";
 import Screen from "../components/Screen";
+import ViewItemDescription from "../components/ViewItemDescription";
+
+const data = [];
 
 function ExpensesScreen({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <Screen>
       <HeaderComponent navigation={navigation} />
       <View style={styles.container}>
         <ChartComponenent from="#FDF8AD" to="#F987D0" />
+        {/* Lista */}
+        <Button title="Modal" onPress={() => setModalVisible(true)} />
+        <Modal visible={modalVisible} animationType="slide">
+          <ViewItemDescription onPress={setModalVisible} />
+        </Modal>
       </View>
     </Screen>
   );
