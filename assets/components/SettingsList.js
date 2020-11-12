@@ -1,20 +1,24 @@
 import React from "react";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import SettingLineComponent from "../components/SettingsLineComponent";
+import LineSeparator from "../components/LineSeparator";
 
-function SettingsList({ settingName, data, style = null }) {
+function SettingsList({ separator, settingName, data, style = null }) {
   return (
     <>
-      <View style={[styles.header, style]}>
-        <View style={styles.border}>
-          <Text style={styles.headerText}>{settingName}</Text>
+      {settingName ? (
+        <View style={[styles.header, style]}>
+          <View style={styles.border}>
+            <Text style={styles.headerText}>{settingName}</Text>
+          </View>
         </View>
-      </View>
+      ) : null}
       <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <SettingLineComponent
+            iconName={item.iconName ? item.iconName : null}
             settingTitle={item.settingTitle}
             settingValue={item.settingValue}
           />
