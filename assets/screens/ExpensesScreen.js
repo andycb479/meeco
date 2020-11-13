@@ -1,7 +1,9 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { View, StyleSheet, Button, Modal } from "react-native";
 import ChartComponenent from "../components/ChartComponenent";
 import HeaderComponent from "../components/Header";
+import LineItemExpenses from "../components/LineItemExpenses";
 import Screen from "../components/Screen";
 import ViewItemDescription from "../components/ViewItemDescription";
 
@@ -19,6 +21,7 @@ function ExpensesScreen({ navigation }) {
         <Modal visible={modalVisible} animationType="slide">
           <ViewItemDescription onPress={setModalVisible} />
         </Modal>
+        <LineItemExpenses />
       </View>
     </Screen>
   );
