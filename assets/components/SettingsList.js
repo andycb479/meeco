@@ -1,7 +1,6 @@
 import React from "react";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import SettingLineComponent from "../components/SettingsLineComponent";
-import LineSeparator from "../components/LineSeparator";
 
 function SettingsList({ separator, settingName, data, style = null }) {
   return (

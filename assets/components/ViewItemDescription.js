@@ -1,20 +1,23 @@
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
-import Screen from "../components/Screen";
-import styles from "../config/styles";
-import BackStackNavigation from "./BackStackNavigation";
 import HomeScreenIcon from "./HomeScreenIcon";
+import { TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function ViewItemDescription({ onPress }) {
   return (
     <View style={styless.container}>
-      <View style={{ position: "absolute", top: 30, left: 5 }}>
-        <Button title="Close" onPress={() => onPress(false)} />
+      <View style={{ position: "absolute", top: 15, left: 5 }}>
+        <TouchableOpacity onPress={() => onPress(false)}>
+          <MaterialCommunityIcons name="chevron-left" size={38} color="black" />
+        </TouchableOpacity>
       </View>
       <Image style={styless.image} source={require("../src/img.png")} />
       <View style={styless.infoContainer}>
         <View style={styless.headerTitleContainer}>
-          <HomeScreenIcon title icon="spa" />
+          <View style={styless.iconBorder}>
+            <MaterialCommunityIcons color={"#666"} size={33} name="spa" />
+          </View>
           <Text style={styless.itemTitle}>New sneakers</Text>
         </View>
         <View style={styless.itemDescriptionContainer}>
@@ -43,10 +46,11 @@ const styless = StyleSheet.create({
     zIndex: -1,
   },
   infoContainer: {
+    minHeight: 300,
+    paddingHorizontal: 15,
+    paddingVertical: 30,
     position: "absolute",
     width: "100%",
-    height: "42%",
-    padding: 15,
     backgroundColor: "white",
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
@@ -56,6 +60,7 @@ const styless = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
+    marginBottom: 5,
   },
   itemTitle: {
     fontSize: 30,
@@ -69,6 +74,17 @@ const styless = StyleSheet.create({
   },
   itemDescriptionContainer: {
     paddingHorizontal: 20,
+  },
+  iconBorder: {
+    width: 50,
+    height: 50,
+    borderRadius: 7,
+    borderColor: "#666",
+    borderWidth: 2,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    marginRight: 15,
   },
 });
 export default ViewItemDescription;
