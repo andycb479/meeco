@@ -37,7 +37,7 @@ function AccountSettingsScreen({ navigation }) {
         <View style={styles.myAcc}>
           <View style={styles.topBar}>
             <BackStackNavigation style={{ flex: 1 }} navigation={navigation} />
-            <Text style={styles.text}>My account</Text>
+            <Text style={styles.text}> My account</Text>
           </View>
           <Image
             style={styles.logo}
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
   },
   myAcc: {
     width: "100%",
-    paddingTop: 15,
     alignItems: "center",
     flex: 1,
   },
