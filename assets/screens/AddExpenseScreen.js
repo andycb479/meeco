@@ -8,6 +8,7 @@ import {
   FormPicker as Picker,
   SubmitButton,
 } from "../components/forms";
+import expensesApi from "../api/expenses";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import Screen from "../components/Screen";
 import FormImagePicker from "../components/forms/FormImagePicker";
@@ -73,6 +74,12 @@ const categories = [
 ];
 
 function AddExpensesScreen({ navigation }) {
+  const handleSubmit = async (expense) => {
+    console.log(expense);
+    //const result = await expensesApi.addExpenses({ ...expense, location });
+    //if (!result.ok) return alert("Could not save the listings");
+    //alert("Succes");
+  };
   return (
     <Screen style={styles.container}>
       <BackStackNavigation style={styles.back} navigation={navigation} />
@@ -84,7 +91,7 @@ function AddExpensesScreen({ navigation }) {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log("location")}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
