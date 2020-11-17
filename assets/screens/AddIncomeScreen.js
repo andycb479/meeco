@@ -79,6 +79,12 @@ const categories = [
 ];
 
 function AddExpensesScreen({ navigation }) {
+  const handleSubmit = async (income) => {
+    const result = await expensesApi.addExpense(expense);
+    if (!result.ok) return alert("Could not save the listings");
+    alert("Succes");
+  };
+
   return (
     <Screen style={styles.container}>
       <BackStackNavigation style={styles.back} navigation={navigation} />
@@ -90,7 +96,7 @@ function AddExpensesScreen({ navigation }) {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log("location")}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormField maxLength={255} name="title" placeholder="Title" />

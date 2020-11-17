@@ -1,26 +1,64 @@
-import React from "react";
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import React, { useState } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Modal,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import ViewItemDescription from "../components/ViewItemDescription";
 
-function LineItemExpenses({ iconName, category, title, date, amount }) {
+function LineItemExpenses({
+  iconName,
+  category,
+  title,
+  date,
+  amount,
+  description,
+}) {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback
+      title="Modal"
+      onPress={() => setModalVisible(true)}
+    >
       <View style={styles.container}>
         <View style={styles.expenseDetailContainer}>
           <View style={styles.iconContainer}>
             <View style={styles.iconBorder}>
-              <MaterialCommunityIcons color={"#666"} size={30} name="home" />
+              <MaterialCommunityIcons
+                color={"#666"}
+                size={30}
+                name={iconName}
+              />
             </View>
-            <Text>Food</Text>
+            {category ? <Text>{category}</Text> : null}
           </View>
           <View style={styles.expenseDetailInnerContainer}>
-            <Text style>MC. Donalds</Text>
-            <Text>17 September 14:02</Text>
+            <Text style={styles.expenseDetailInnerContainerTitle}>{title}</Text>
+            <Text style={styles.expenseDetailInnerContainerDate}>{date}</Text>
           </View>
         </View>
         <View style={styles.amountContainer}>
-          <Text>656 MDL</Text>
+          {category ? (
+            <Text style={{ fontWeight: "bold", color: "tomato" }}>
+              {amount}
+            </Text>
+          ) : (
+            <Text style={{ fontWeight: "bold", color: "green" }}>{amount}</Text>
+          )}
         </View>
+        <Modal visible={modalVisible} animationType="slide">
+          <ViewItemDescription
+            onPress={setModalVisible}
+            iconName={iconName}
+            title={title}
+            date={date}
+            amount={amount}
+            description={description}
+          />
+        </Modal>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -31,9 +69,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     alignContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#c3c3c3",
   },
   expenseDetailContainer: {
     flex: 2,
@@ -62,6 +101,18 @@ const styles = StyleSheet.create({
   amountContainer: {
     flex: 1,
     flexDirection: "row-reverse",
+  },
+  expenseDetailInnerContainerTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  expenseDetailInnerContainerDate: {
+    fontSize: 14,
+    color: "#666",
+  },
+  amountContainerText: {
+    color: "tomato",
+    fontWeight: "bold",
   },
 });
 export default LineItemExpenses;

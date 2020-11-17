@@ -10,10 +10,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View, Button, Text, TextInput } from "react-native";
 import BottomTab from "./assets/components/BottomTab";
 import AccountSettingsScreen from "./assets/screens/AccountSettingsScreen";
-import DrawerScreen from "./assets/screens/CurrencyScreen";
 import AddExpenseScreen from "./assets/screens/AddExpenseScreen";
 import AddIncomeScreen from "./assets/screens/AddIncomeScreen";
 import CurrencyScreen from "./assets/screens/CurrencyScreen";
+
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator

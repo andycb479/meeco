@@ -4,7 +4,14 @@ import HomeScreenIcon from "./HomeScreenIcon";
 import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function ViewItemDescription({ onPress }) {
+function ViewItemDescription({
+  onPress,
+  iconName,
+  title,
+  date,
+  amount,
+  description,
+}) {
   return (
     <View style={styless.container}>
       <View style={{ position: "absolute", top: 15, left: 5 }}>
@@ -16,21 +23,20 @@ function ViewItemDescription({ onPress }) {
       <View style={styless.infoContainer}>
         <View style={styless.headerTitleContainer}>
           <View style={styless.iconBorder}>
-            <MaterialCommunityIcons color={"#666"} size={33} name="spa" />
+            <MaterialCommunityIcons color={"#666"} size={33} name={iconName} />
           </View>
-          <Text style={styless.itemTitle}>New sneakers</Text>
+          <Text style={styless.itemTitle}>{title}</Text>
         </View>
         <View style={styless.itemDescriptionContainer}>
           <Text style={styless.itemDescription}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            {description
+              ? description
+              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"}
           </Text>
           <Text style={[styless.itemTitle, { marginBottom: 10 }]}>
-            2500 MDL
+            {amount}
           </Text>
-          <Text>17 September 01:20</Text>
+          <Text>{date}</Text>
         </View>
       </View>
     </View>

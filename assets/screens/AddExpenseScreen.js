@@ -8,7 +8,7 @@ import {
   FormPicker as Picker,
   SubmitButton,
 } from "../components/forms";
-import expensesApi from "../api/expenses";
+import incomesApi from "../api/incomes";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import Screen from "../components/Screen";
 import FormImagePicker from "../components/forms/FormImagePicker";
@@ -74,11 +74,10 @@ const categories = [
 ];
 
 function AddExpensesScreen({ navigation }) {
-  const handleSubmit = async (expense) => {
-    console.log(expense);
-    //const result = await expensesApi.addExpenses({ ...expense, location });
-    //if (!result.ok) return alert("Could not save the listings");
-    //alert("Succes");
+  const handleSubmit = async (income) => {
+    const result = await incomesApi.addIncome(income);
+    if (!result.ok) return alert("Could not save the listings");
+    alert("Succes");
   };
   return (
     <Screen style={styles.container}>
@@ -100,7 +99,7 @@ function AddExpensesScreen({ navigation }) {
           keyboardType="numeric"
           maxLength={8}
           name="price"
-          placeholder="Price"
+          placeholder="Amount"
           width={120}
         />
         <Picker
