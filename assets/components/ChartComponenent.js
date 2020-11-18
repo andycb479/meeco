@@ -3,22 +3,15 @@ import { View, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
-function ChartComponenent({ from, to }) {
+function ChartComponenent({ data, from, to }) {
   return (
     <View>
       <LineChart
         data={{
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: data.labels,
           datasets: [
             {
-              data: [
-                Math.random() * 1000,
-                Math.random() * 1000,
-                Math.random() * 1000,
-                Math.random() * 1000,
-                Math.random() * 1000,
-                Math.random() * 1000,
-              ],
+              data: data.data
             },
           ],
         }}

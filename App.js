@@ -7,7 +7,7 @@ import HomeScreen from "./assets/screens/HomeScreen";
 import ExpensesScreen from "./assets/screens/ExpensesScreen";
 import IncomesScreen from "./assets/screens/IncomesScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import { View, Button, Text, TextInput } from "react-native";
+import { View, Button } from "react-native";
 import BottomTab from "./assets/components/BottomTab";
 import AccountSettingsScreen from "./assets/screens/AccountSettingsScreen";
 import AddExpenseScreen from "./assets/screens/AddExpenseScreen";

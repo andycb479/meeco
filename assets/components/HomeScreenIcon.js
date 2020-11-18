@@ -7,7 +7,6 @@ function HomeScreenIcon({ active, title, icon, onPress }) {
     <TouchableWithoutFeedback
       onPress={() => {
         onPress({ title, icon });
-        //console.log(active);
       }}
     >
       {active == title ? (

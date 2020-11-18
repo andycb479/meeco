@@ -7,14 +7,14 @@ function IncomesList({ data }) {
     <FlatList
       contentContainerStyle={styles.scroll}
       data={data}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item._id.toString()}
       renderItem={({ item }) => (
         <LineItemExpenses
           iconName={"currency-usd"}
-          date={item.date}
-          title={item.title}
-          amount={item.amount}
-          category={item.category}
+          date={new Date(item.date).toString().substring(4, 21)}
+          title={item.name}
+          description={item.description}
+          amount={item.value + " lei"}
         />
       )}
     />

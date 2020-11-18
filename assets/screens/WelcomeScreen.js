@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
+import useApi from "../hooks/useApi";
+import eachCategorySum from "../api/eachCategorySum";
 
 function WelcomeScreen({ navigation }) {
+  const { data, error, loading, request } = useApi(eachCategorySum.getSums);
+  useEffect(() => {
+    request();
+  }, []);
   return (
     <View style={styles.container}>
       <LottieView

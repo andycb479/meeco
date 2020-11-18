@@ -8,9 +8,9 @@ import {
   FormPicker as Picker,
   SubmitButton,
 } from "../components/forms";
-import incomesApi from "../api/incomes";
-import CategoryPickerItem from "../components/CategoryPickerItem";
+import expensesApi from "../api/expenses";
 import Screen from "../components/Screen";
+import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import BackStackNavigation from "../components/BackStackNavigation";
 
@@ -74,8 +74,8 @@ const categories = [
 ];
 
 function AddExpensesScreen({ navigation }) {
-  const handleSubmit = async (income) => {
-    const result = await incomesApi.addIncome(income);
+  const handleSubmit = async (expense) => {
+    const result = await expensesApi.addExpense(expense);
     if (!result.ok) return alert("Could not save the listings");
     alert("Succes");
   };
