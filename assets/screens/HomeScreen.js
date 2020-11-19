@@ -19,6 +19,7 @@ function HomeScreen({ navigation }) {
 
   const handler = (active) => {
     setActiveIndex(active);
+    setActiveAmount(data[active.title]);
   };
 
   const [activeIndex, setActiveIndex] = useState({ title: "Car", icon: "car" });
