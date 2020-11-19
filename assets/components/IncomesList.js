@@ -1,12 +1,18 @@
 import React, { useRef } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, RefreshControl } from "react-native";
 import LineItemExpenses from "./LineItemExpenses";
 
-function IncomesList({ data }) {
+function IncomesList({ onRefreshHandler, refreshingState, data }) {
   return (
     <FlatList
       contentContainerStyle={styles.scroll}
       data={data}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshingState}
+          onRefresh={onRefreshHandler}
+        />
+      }
       keyExtractor={(item) => item._id.toString()}
       renderItem={({ item }) => (
         <LineItemExpenses

@@ -33,7 +33,7 @@ function LineItemExpenses({
                 name={iconName}
               />
             </View>
-            {category ? <Text>{category}</Text> : null}
+            {/* {category ? <Text>{category}</Text> : null} */}
           </View>
           <View style={styles.expenseDetailInnerContainer}>
             <Text style={styles.expenseDetailInnerContainerTitle}>{title}</Text>
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   iconContainer: {
+    width: 40,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

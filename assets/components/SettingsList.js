@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import SettingLineComponent from "../components/SettingsLineComponent";
 
-function SettingsList({ separator, settingName, data, style = null }) {
+function SettingsList({ settingName, data, style = null }) {
   return (
     <>
       {settingName ? (

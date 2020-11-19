@@ -14,57 +14,13 @@ import useApi from "../hooks/useApi";
 import incomesDiagram from "../api/incomesDiagram";
 import incomes from "../api/incomes";
 
-// const data = [
-//   {
-//     id: 1,
-//     title: "Bursa",
-//     date: "17 September 14:02",
-//     description: "ceva",
-//     amount: "1000 lei",
-//   },
-//   {
-//     id: 2,
-//     title: "Cadou de la bunelu",
-//     date: "17 September 14:02",
-//     amount: "20000 lei",
-//   },
-//   {
-//     id: 3,
-//     title: "McDonalds",
-//     date: "17 September 14:02",
-//     amount: "657 lei",
-//   },
-//   {
-//     id: 4,
-//     title: "Bursa",
-//     date: "17 September 14:02",
-//     amount: "1000 lei",
-//   },
-//   {
-//     id: 5,
-//     title: "Cadou de la bunelu",
-//     date: "17 September 14:02",
-//     amount: "20000 lei",
-//   },
-//   {
-//     id: 6,
-//     title: "Bursa",
-//     date: "17 September 14:02",
-//     amount: "1000 lei",
-//   },
-//   {
-//     id: 7,
-//     title: "Bursa",
-//     date: "17 September 14:02",
-//     amount: "1000 lei",
-//   },
-//   {
-//     id: 8,
-//     title: "Bursa",
-//     date: "17 September 14:02",
-//     amount: "1000 lei",
-//   },
-// ];
+const wait = (timeout, listRequest, chartRequest) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+    listRequest();
+    chartRequest();
+  });
+};
 
 function IncomesScreen({ navigation }) {
   const { data: chartData, error, loading, request: getSums } = useApi(
@@ -75,6 +31,15 @@ function IncomesScreen({ navigation }) {
     allIncomes.request();
     getSums();
   }, []);
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+
+    wait(2000, allIncomes.request, getSums).then(() => setRefreshing(false));
+  }, []);
+
   return (
     <Screen>
       <HeaderComponent navigation={navigation} />
@@ -83,7 +48,11 @@ function IncomesScreen({ navigation }) {
       ) : (
         <View style={styles.container}>
           <ChartComponenent data={chartData} from="#9FEDFF" to="#42e879" />
-          <IncomesList data={allIncomes.data} />
+          <IncomesList
+            onRefreshHandler={onRefresh}
+            refreshingState={refreshing}
+            data={allIncomes.data}
+          />
         </View>
       )}
     </Screen>

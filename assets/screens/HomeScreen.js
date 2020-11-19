@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Image,
-  TextInput,
-  ActivityIndicator,
-} from "react-native";
+import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from "../components/Screen";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -24,12 +16,25 @@ function HomeScreen({ navigation }) {
   useEffect(() => {
     getSum();
   }, []);
+
   const handler = (active) => {
     setActiveIndex(active);
-    setActiveAmount(data[active.title]);
   };
+
   const [activeIndex, setActiveIndex] = useState({ title: "Car", icon: "car" });
   const [activeAmount, setActiveAmount] = useState();
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      getSum();
+      // setTimeout(() => {
+      //   setActiveIndex(activeIndex);
+      //   setActiveAmount(data[activeIndex.title]);
+      // }, 300);
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <Screen style={styles.container}>
       <HeaderComponent navigation={navigation} />
