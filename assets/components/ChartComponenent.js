@@ -4,14 +4,19 @@ import { Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
 function ChartComponenent({ data, from, to }) {
+  var labels = [];
+  data.labels.forEach((element) => {
+    labels.push(element.substring(0, 3));
+  });
+
   return (
     <View>
       <LineChart
         data={{
-          labels: data.labels,
+          labels: labels,
           datasets: [
             {
-              data: data.data
+              data: data.data,
             },
           ],
         }}

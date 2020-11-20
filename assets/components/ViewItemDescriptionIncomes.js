@@ -1,12 +1,10 @@
 import React from "react";
-import { Button, Image, StyleSheet, Text, View } from "react-native";
-import HomeScreenIcon from "./HomeScreenIcon";
+import { StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 
-function ViewItemDescription({
+function ViewItemDescriptionIncomes({
   onPress,
-  iconName,
   title,
   date,
   amount,
@@ -16,14 +14,18 @@ function ViewItemDescription({
     <View style={styless.container}>
       <View style={{ position: "absolute", top: 25, left: 5 }}>
         <TouchableOpacity onPress={() => onPress(false)}>
-          <MaterialCommunityIcons name="chevron-left" size={38} color="red" />
+          <MaterialCommunityIcons name="chevron-left" size={38} color="green" />
         </TouchableOpacity>
       </View>
-      <Image style={styless.image} source={require("../src/Meeco_Img.png")} />
+
       <View style={styless.infoContainer}>
         <View style={styless.headerTitleContainer}>
           <View style={styless.iconBorder}>
-            <MaterialCommunityIcons color={"#666"} size={33} name={iconName} />
+            <MaterialCommunityIcons
+              name="currency-usd"
+              size={100}
+              color="green"
+            />
           </View>
           <Text style={styless.itemTitle}>{title}</Text>
         </View>
@@ -31,12 +33,12 @@ function ViewItemDescription({
           <Text style={styless.itemDescription}>
             {description ? description : null}
           </Text>
-          <View>
-            <Text style={[styless.itemTitle, { marginBottom: 10 }]}>
-              {amount}
-            </Text>
-            <Text style={{ color: "#888" }}>{date}</Text>
-          </View>
+          <Text
+            style={[styless.itemTitle, { marginBottom: 10, color: "green" }]}
+          >
+            {amount}
+          </Text>
+          <Text style={{ color: "#888" }}>{date}</Text>
         </View>
       </View>
     </View>
@@ -45,30 +47,21 @@ function ViewItemDescription({
 const styless = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e0e0e0",
-  },
-  image: {
-    height: "65%",
-    width: "100%",
-    zIndex: -1,
-  },
-  infoContainer: {
-    minHeight: 250,
-    paddingHorizontal: 15,
-    paddingVertical: 30,
-    position: "absolute",
-    width: "100%",
-    backgroundColor: "white",
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
-    bottom: 0,
-    justifyContent: "space-between",
+    width: "100%",
+    backgroundColor: "white",
+  },
+  infoContainer: {
+    marginTop: 50,
+    paddingHorizontal: 15,
+    paddingVertical: 30,
+    width: "100%",
   },
   headerTitleContainer: {
-    flexDirection: "row",
     width: "100%",
     alignItems: "center",
-    marginBottom: 5,
+    marginBottom: 10,
   },
   itemTitle: {
     fontSize: 30,
@@ -82,19 +75,19 @@ const styless = StyleSheet.create({
   },
   itemDescriptionContainer: {
     paddingHorizontal: 20,
-    justifyContent: "space-between",
-    flex: 1,
+    borderTopColor: "#888",
+    borderTopWidth: 1,
   },
   iconBorder: {
-    width: 50,
-    height: 50,
-    borderRadius: 7,
-    borderColor: "#666",
-    borderWidth: 2,
+    width: 150,
+    height: 150,
+    borderRadius: 25,
+    borderColor: "green",
+    borderWidth: 3,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginRight: 15,
+    marginBottom: 10,
   },
 });
-export default ViewItemDescription;
+export default ViewItemDescriptionIncomes;

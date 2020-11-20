@@ -21,6 +21,7 @@ function IncomesList({ onRefreshHandler, refreshingState, data }) {
           title={item.name}
           description={item.description}
           amount={item.value + " lei"}
+          incomes
         />
       )}
     />

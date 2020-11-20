@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ViewItemDescription from "../components/ViewItemDescription";
+import ViewItemDescriptionIncomes from "./ViewItemDescriptionIncomes";
 
 function LineItemExpenses({
   iconName,
@@ -16,6 +17,7 @@ function LineItemExpenses({
   date,
   amount,
   description,
+  incomes,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -33,7 +35,6 @@ function LineItemExpenses({
                 name={iconName}
               />
             </View>
-            {/* {category ? <Text>{category}</Text> : null} */}
           </View>
           <View style={styles.expenseDetailInnerContainer}>
             <Text style={styles.expenseDetailInnerContainerTitle}>{title}</Text>
@@ -49,15 +50,31 @@ function LineItemExpenses({
             <Text style={{ fontWeight: "bold", color: "green" }}>{amount}</Text>
           )}
         </View>
-        <Modal visible={modalVisible} animationType="slide">
-          <ViewItemDescription
-            onPress={setModalVisible}
-            iconName={iconName}
-            title={title}
-            date={date}
-            amount={amount}
-            description={description}
-          />
+        <Modal
+          visible={modalVisible}
+          animationType="slide"
+          transparent
+          statusBarTranslucent
+        >
+          {!incomes ? (
+            <ViewItemDescription
+              onPress={setModalVisible}
+              iconName={iconName}
+              title={title}
+              date={date}
+              amount={amount}
+              description={description}
+            />
+          ) : (
+            <ViewItemDescriptionIncomes
+              onPress={setModalVisible}
+              iconName={iconName}
+              title={title}
+              date={date}
+              amount={amount}
+              description={description}
+            />
+          )}
         </Modal>
       </View>
     </TouchableWithoutFeedback>

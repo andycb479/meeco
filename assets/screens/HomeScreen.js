@@ -28,10 +28,8 @@ function HomeScreen({ navigation }) {
   React.useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
       getSum();
-      // setTimeout(() => {
-      //   setActiveIndex(activeIndex);
-      //   setActiveAmount(data[activeIndex.title]);
-      // }, 300);
+      setActiveIndex(activeIndex);
+      setActiveAmount(data[activeIndex.title]);
     });
     return unsubscribe;
   }, []);
