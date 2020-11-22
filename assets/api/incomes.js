@@ -13,7 +13,12 @@ const addIncome = (income) => {
   return client.post(endpoint, JSON.stringify(datas));
 };
 
+const deleteIncome = (id) => {
+  return client.delete(endpoint + "/" + id.toString());
+};
+
 export default {
   getIncomes,
   addIncome,
+  deleteIncome,
 };

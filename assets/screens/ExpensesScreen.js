@@ -31,14 +31,18 @@ function ExpensesScreen({ navigation }) {
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
 
-    wait(2000, allExpenses.request, getSums).then(() => setRefreshing(false));
+    wait(1000, allExpenses.request, getSums).then(() => setRefreshing(false));
   }, []);
 
   return (
     <Screen>
       <HeaderComponent navigation={navigation} />
       {!chartData.data && allExpenses.data ? (
-        <ActivityIndicator animating={loading} size={30} color="red" />
+        <ActivityIndicator
+          animating={allExpenses.loading && loading}
+          size={30}
+          color="red"
+        />
       ) : (
         <View style={styles.container}>
           <ChartComponenent data={chartData} from="#FDF8AD" to="#F987D0" />

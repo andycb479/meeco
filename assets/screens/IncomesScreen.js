@@ -37,14 +37,18 @@ function IncomesScreen({ navigation }) {
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
 
-    wait(2000, allIncomes.request, getSums).then(() => setRefreshing(false));
+    wait(1000, allIncomes.request, getSums).then(() => setRefreshing(false));
   }, []);
 
   return (
     <Screen>
       <HeaderComponent navigation={navigation} />
       {!chartData.data && allIncomes.data ? (
-        <ActivityIndicator animating={loading} size={30} color="green" />
+        <ActivityIndicator
+          animating={loading && allIncomes.loading}
+          size={30}
+          color="green"
+        />
       ) : (
         <View style={styles.container}>
           <ChartComponenent data={chartData} from="#9FEDFF" to="#42e879" />

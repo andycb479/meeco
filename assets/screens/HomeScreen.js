@@ -14,8 +14,9 @@ function HomeScreen({ navigation }) {
     eachCategorySum.getSums
   );
   useEffect(() => {
-    getSum();
-  }, []);
+    setActiveIndex(activeIndex);
+    setActiveAmount(data[activeIndex.title]);
+  }, [data]);
 
   const handler = (active) => {
     setActiveIndex(active);
@@ -28,8 +29,6 @@ function HomeScreen({ navigation }) {
   React.useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
       getSum();
-      setActiveIndex(activeIndex);
-      setActiveAmount(data[activeIndex.title]);
     });
     return unsubscribe;
   }, []);

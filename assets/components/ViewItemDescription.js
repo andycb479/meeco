@@ -11,6 +11,7 @@ function ViewItemDescription({
   date,
   amount,
   description,
+  imageURI,
 }) {
   return (
     <View style={styless.container}>
@@ -19,7 +20,12 @@ function ViewItemDescription({
           <MaterialCommunityIcons name="chevron-left" size={38} color="red" />
         </TouchableOpacity>
       </View>
-      <Image style={styless.image} source={require("../src/Meeco_Img.png")} />
+      {!imageURI ? (
+        <Image style={styless.image} source={require("../src/Meeco_Img.png")} />
+      ) : (
+        <Image style={styless.image} source={{ uri: imageURI }} />
+      )}
+
       <View style={styless.infoContainer}>
         <View style={styless.headerTitleContainer}>
           <View style={styless.iconBorder}>
@@ -53,7 +59,7 @@ const styless = StyleSheet.create({
     zIndex: -1,
   },
   infoContainer: {
-    minHeight: 250,
+    minHeight: 150,
     paddingHorizontal: 15,
     paddingVertical: 30,
     position: "absolute",
@@ -77,7 +83,7 @@ const styless = StyleSheet.create({
   },
   itemDescription: {
     fontSize: 18,
-    color: "#777",
+    color: "#888",
     marginBottom: 10,
   },
   itemDescriptionContainer: {

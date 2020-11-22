@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
 import currency from "../api/currency";
 import BackStackNavigation from "../components/BackStackNavigation";
+import GmailStyleSwipeableRow from "../components/GmailStyleSwipeableRow";
 import Screen from "../components/Screen";
 import SettingsList from "../components/SettingsList";
 import useApi from "../hooks/useApi";

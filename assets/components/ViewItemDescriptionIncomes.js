@@ -47,8 +47,6 @@ function ViewItemDescriptionIncomes({
 const styless = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopRightRadius: 45,
-    borderTopLeftRadius: 45,
     width: "100%",
     backgroundColor: "white",
   },

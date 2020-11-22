@@ -5051,6 +5051,13 @@ react-native-svg@12.1.0:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
 
+react-native-swipeview@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-swipeview/-/react-native-swipeview-1.0.3.tgz#df622ae37db4dc4906a4f8787342c02a13b0f8f0"
+  integrity sha1-32Iq43203EkGpPh4c0LAKhOw+PA=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-tab-view@^2.15.2:
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.15.2.tgz#4bc7832d33a119306614efee667509672a7ee64e"

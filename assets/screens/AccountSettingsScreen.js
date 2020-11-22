@@ -10,23 +10,18 @@ import SettingsList from "../components/SettingsList";
 const data = [
   {
     id: 1,
-    settingTitle: "First Name",
-    settingValue: "Dinara",
+    settingTitle: "First Name:",
+    settingValue: "Andy",
   },
   {
     id: 2,
-    settingTitle: "Currency",
+    settingTitle: "Currency:",
     settingValue: "MDL",
   },
   {
     id: 3,
-    settingTitle: "First Name",
-    settingValue: "Dinara",
-  },
-  {
-    id: 4,
-    settingTitle: "First Name",
-    settingValue: "Dinara",
+    settingTitle: "Email:",
+    settingValue: "ciobanu.andy@gmail.com",
   },
 ];
 
@@ -50,11 +45,6 @@ function AccountSettingsScreen({ navigation }) {
         <View style={styles.settings}>
           <View>
             <SettingsList data={data} settingName="Account Details" />
-            <SettingsList
-              style={{ marginTop: 15 }}
-              data={data}
-              settingName="Category"
-            />
           </View>
         </View>
       </View>
