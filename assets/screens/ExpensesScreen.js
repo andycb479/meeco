@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  Text,
+  TouchableHighlight,
+} from "react-native";
 import ChartComponenent from "../components/ChartComponenent";
 import HeaderComponent from "../components/Header";
 import Screen from "../components/Screen";
@@ -7,6 +13,7 @@ import ExpensesList from "../components/ExpensesList";
 import useApi from "../hooks/useApi";
 import expensesDiagram from "../api/expensesDiagram";
 import expenses from "../api/expenses";
+import ExportPDFButton from "../components/ExportPDFButton";
 
 const wait = (timeout, listRequest, chartRequest) => {
   return new Promise((resolve) => {
@@ -31,7 +38,7 @@ function ExpensesScreen({ navigation }) {
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
 
-    wait(1000, allExpenses.request, getSums).then(() => setRefreshing(false));
+    wait(2000, allExpenses.request, getSums).then(() => setRefreshing(false));
   }, []);
 
   return (
@@ -46,6 +53,7 @@ function ExpensesScreen({ navigation }) {
       ) : (
         <View style={styles.container}>
           <ChartComponenent data={chartData} from="#FDF8AD" to="#F987D0" />
+          <ExportPDFButton data={allExpenses.data} />
           <ExpensesList
             onRefreshHandler={onRefresh}
             refreshingState={refreshing}
@@ -57,5 +65,7 @@ function ExpensesScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({ container: { flex: 1 } });
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+});
 export default ExpensesScreen;

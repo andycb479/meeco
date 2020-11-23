@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   View,
-  Button,
   StyleSheet,
-  Modal,
   ActivityIndicator,
 } from "react-native";
 import HeaderComponent from "../components/Header";
@@ -13,6 +11,7 @@ import IncomesList from "../components/IncomesList";
 import useApi from "../hooks/useApi";
 import incomesDiagram from "../api/incomesDiagram";
 import incomes from "../api/incomes";
+import ExportPDFButton from "../components/ExportPDFButton";
 
 const wait = (timeout, listRequest, chartRequest) => {
   return new Promise((resolve) => {
@@ -28,16 +27,15 @@ function IncomesScreen({ navigation }) {
   );
   const allIncomes = useApi(incomes.getIncomes);
   useEffect(() => {
-    allIncomes.request();
     getSums();
+    allIncomes.request();
   }, []);
 
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-
-    wait(1000, allIncomes.request, getSums).then(() => setRefreshing(false));
+    wait(2000, allIncomes.request, getSums).then(() => setRefreshing(false));
   }, []);
 
   return (
@@ -52,6 +50,7 @@ function IncomesScreen({ navigation }) {
       ) : (
         <View style={styles.container}>
           <ChartComponenent data={chartData} from="#9FEDFF" to="#42e879" />
+          <ExportPDFButton data={allIncomes.data} incomes/>
           <IncomesList
             onRefreshHandler={onRefresh}
             refreshingState={refreshing}
