@@ -1,10 +1,13 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+} from "react-native";
 import Screen from "../components/Screen";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import BackStackNavigation from "../components/BackStackNavigation";
-
 import SettingsList from "../components/SettingsList";
 
 const data = [
@@ -26,6 +29,7 @@ const data = [
 ];
 
 function AccountSettingsScreen({ navigation }) {
+  const { user, logOut } = useAuth();
   return (
     <Screen>
       <View style={styles.container}>
@@ -45,6 +49,16 @@ function AccountSettingsScreen({ navigation }) {
         <View style={styles.settings}>
           <View>
             <SettingsList data={data} settingName="Account Details" />
+            <View
+              style={{ width: "100%", alignItems: "center", marginTop: 20 }}
+            >
+              <TouchableHighlight
+                style={[styles.buttons, { backgroundColor: "#373435" }]}
+                onPress={() => console.log("test")}
+              >
+                <Text style={styles.buttonText}>Log out</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
       </View>
@@ -82,6 +96,17 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 100,
+  },
+  buttons: {
+    width: 275,
+    height: 50,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 20,
   },
 });
 export default AccountSettingsScreen;
