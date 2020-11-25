@@ -9,27 +9,27 @@ import {
 import Screen from "../components/Screen";
 import BackStackNavigation from "../components/BackStackNavigation";
 import SettingsList from "../components/SettingsList";
-
-const data = [
-  {
-    id: 1,
-    settingTitle: "First Name:",
-    settingValue: "Andy",
-  },
-  {
-    id: 2,
-    settingTitle: "Currency:",
-    settingValue: "MDL",
-  },
-  {
-    id: 3,
-    settingTitle: "Email:",
-    settingValue: "ciobanu.andy@gmail.com",
-  },
-];
+import useAuth from "../auth/useAuth";
 
 function AccountSettingsScreen({ navigation }) {
   const { user, logOut } = useAuth();
+  const data = [
+    {
+      id: 1,
+      settingTitle: "First Name:",
+      settingValue: user.name,
+    },
+    {
+      id: 2,
+      settingTitle: "Currency:",
+      settingValue: "MDL",
+    },
+    {
+      id: 3,
+      settingTitle: "Email:",
+      settingValue: "ciobanu.andy@gmail.com",
+    },
+  ];
   return (
     <Screen>
       <View style={styles.container}>
@@ -54,7 +54,7 @@ function AccountSettingsScreen({ navigation }) {
             >
               <TouchableHighlight
                 style={[styles.buttons, { backgroundColor: "#373435" }]}
-                onPress={() => console.log("test")}
+                onPress={() => logOut()}
               >
                 <Text style={styles.buttonText}>Log out</Text>
               </TouchableHighlight>
