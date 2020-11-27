@@ -1,9 +1,8 @@
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
 import currency from "../api/currency";
 import BackStackNavigation from "../components/BackStackNavigation";
-import GmailStyleSwipeableRow from "../components/GmailStyleSwipeableRow";
 import Screen from "../components/Screen";
 import SettingsList from "../components/SettingsList";
 import useApi from "../hooks/useApi";
@@ -29,36 +28,71 @@ function CurrencyScreen({ navigation }) {
         iconName: "euro-sign",
         settingTitle: "EUR",
         settingValue: currencyData[0].EUR + " lei",
+        color: "#824586",
       },
       {
         id: 2,
         settingTitle: "USD",
         settingValue: currencyData[0].USD + " lei",
         iconName: "dollar-sign",
+        color: "#186F4D",
       },
       {
         id: 3,
         settingTitle: "RUB",
         settingValue: currencyData[0].RUB + " lei",
         iconName: "ruble-sign",
+        color: "#1979a9",
       },
       {
         id: 5,
         settingTitle: "GBP",
         settingValue: currencyData[0].GBP + " lei",
         iconName: "pound-sign",
+        color: "tomato",
       },
       {
         id: 6,
         settingTitle: "CAD",
         settingValue: currencyData[0].CAD + " lei",
         iconName: "canadian-maple-leaf",
+        color: "#C41239",
       },
       {
         id: 7,
         settingTitle: "TRY",
-        settingValue: currencyData[0].TUR + " lei",
+        settingValue: currencyData[0].TRY + " lei",
         iconName: "lira-sign",
+      },
+      {
+        id: 9,
+        settingTitle: "RON",
+        settingValue: currencyData[0].RON + " lei",
+        flag: "RO",
+      },
+      {
+        id: 10,
+        settingTitle: "UAH",
+        settingValue: currencyData[0].UAH + " lei",
+        flag: "UA",
+      },
+      {
+        id: 11,
+        settingTitle: "CHF",
+        settingValue: currencyData[0].CHF + " lei",
+        flag: "CH",
+      },
+      {
+        id: 12,
+        settingTitle: "HUF",
+        settingValue: currencyData[0].HUF + " lei",
+        flag: "HU",
+      },
+      {
+        id: 13,
+        settingTitle: "BGN",
+        settingValue: currencyData[0].BGN + " lei",
+        flag: "BG",
       },
     ];
   }

@@ -1,31 +1,35 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+} from "react-native";
 import Screen from "../components/Screen";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import BackStackNavigation from "../components/BackStackNavigation";
-
 import SettingsList from "../components/SettingsList";
-
-const data = [
-  {
-    id: 1,
-    settingTitle: "First Name:",
-    settingValue: "Andy",
-  },
-  {
-    id: 2,
-    settingTitle: "Currency:",
-    settingValue: "MDL",
-  },
-  {
-    id: 3,
-    settingTitle: "Email:",
-    settingValue: "ciobanu.andy@gmail.com",
-  },
-];
+import useAuth from "../auth/useAuth";
 
 function AccountSettingsScreen({ navigation }) {
+  const { user, logOut } = useAuth();
+  const data = [
+    {
+      id: 1,
+      settingTitle: "First Name:",
+      settingValue: user.name,
+    },
+    {
+      id: 2,
+      settingTitle: "Currency:",
+      settingValue: "MDL",
+    },
+    {
+      id: 3,
+      settingTitle: "Username:",
+      settingValue: user.username,
+    },
+  ];
   return (
     <Screen>
       <View style={styles.container}>
@@ -45,6 +49,16 @@ function AccountSettingsScreen({ navigation }) {
         <View style={styles.settings}>
           <View>
             <SettingsList data={data} settingName="Account Details" />
+            <View
+              style={{ width: "100%", alignItems: "center", marginTop: 20 }}
+            >
+              <TouchableHighlight
+                style={[styles.buttons, { backgroundColor: "#373435" }]}
+                onPress={() => logOut()}
+              >
+                <Text style={styles.buttonText}>Log out</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
       </View>
@@ -82,6 +96,17 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 100,
+  },
+  buttons: {
+    width: 275,
+    height: 50,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 20,
   },
 });
 export default AccountSettingsScreen;

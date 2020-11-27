@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Button,
-  StyleSheet,
-  Modal,
-  ActivityIndicator,
-} from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import HeaderComponent from "../components/Header";
 import Screen from "../components/Screen";
 import ChartComponenent from "../components/ChartComponenent";
@@ -13,14 +7,8 @@ import IncomesList from "../components/IncomesList";
 import useApi from "../hooks/useApi";
 import incomesDiagram from "../api/incomesDiagram";
 import incomes from "../api/incomes";
-
-const wait = (timeout, listRequest, chartRequest) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, timeout);
-    listRequest();
-    chartRequest();
-  });
-};
+import ExportPDFButton from "../components/ExportPDFButton";
+import RefreshContext from "../utility/RefreshContext";
 
 function IncomesScreen({ navigation }) {
   const { data: chartData, error, loading, request: getSums } = useApi(
@@ -28,38 +16,38 @@ function IncomesScreen({ navigation }) {
   );
   const allIncomes = useApi(incomes.getIncomes);
   useEffect(() => {
+    getSums();
+    allIncomes.request();
+  }, []);
+
+  const onRefresh = React.useCallback(() => {
     allIncomes.request();
     getSums();
   }, []);
 
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-
-    wait(1000, allIncomes.request, getSums).then(() => setRefreshing(false));
-  }, []);
-
   return (
-    <Screen>
-      <HeaderComponent navigation={navigation} />
-      {!chartData.data && allIncomes.data ? (
-        <ActivityIndicator
-          animating={loading && allIncomes.loading}
-          size={30}
-          color="green"
-        />
-      ) : (
-        <View style={styles.container}>
-          <ChartComponenent data={chartData} from="#9FEDFF" to="#42e879" />
-          <IncomesList
-            onRefreshHandler={onRefresh}
-            refreshingState={refreshing}
-            data={allIncomes.data}
+    <RefreshContext.Provider value={{ onRefresh }}>
+      <Screen>
+        <HeaderComponent navigation={navigation} />
+        {!chartData.data && allIncomes.data ? (
+          <ActivityIndicator
+            animating={loading && allIncomes.loading}
+            size={30}
+            color="green"
           />
-        </View>
-      )}
-    </Screen>
+        ) : (
+          <View style={styles.container}>
+            <ChartComponenent data={chartData} from="#9FEDFF" to="#42e879" />
+            <ExportPDFButton data={allIncomes.data} incomes />
+            <IncomesList
+              onRefreshHandler={onRefresh}
+              refreshingState={allIncomes.loading}
+              data={allIncomes.data}
+            />
+          </View>
+        )}
+      </Screen>
+    </RefreshContext.Provider>
   );
 }
 
