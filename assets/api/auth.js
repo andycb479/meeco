@@ -1,8 +1,8 @@
 import client from "./client";
 
-const endpoint = "";
+const endpoint = "/users/auth";
 
-const login = (email, password) => client.post(endpoint, { email, password });
+const login = (userInfo) => client.post(endpoint, JSON.stringify(userInfo));
 
 export default {
   login,

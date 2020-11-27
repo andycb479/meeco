@@ -3,7 +3,6 @@ import { StyleSheet, ActivityIndicator } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import usersApi from "../api/users";
 import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
 import {
@@ -13,34 +12,32 @@ import {
   SubmitButton,
 } from "../components/forms";
 import useApi from "../hooks/useApi";
+import users from "../api/users";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
-  email: Yup.string().required().email().label("Email"),
+  username: Yup.string().required().min(4).label("Username"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
 function RegisterScreen() {
-  const registerApi = useApi(usersApi.register);
+  const registerApi = useApi(users.register);
   const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [error, setError] = useState();
 
   const handleSubmit = async (userInfo) => {
-    // const result = await registerApi.request(userInfo);
-    // if (!result.ok) {
-    //   if (result.data) setError(result.data.error);
-    //   else {
-    //     setError("An unexpected error occurred.");
-    //     console.log(result);
-    //   }
-    //   return;
-    // }
-    // const { data: authToken } = await loginApi.request(
-    //   userInfo.email,
-    //   userInfo.password
-    // );
-    // auth.logIn(authToken);
+    const result = await registerApi.request(userInfo);
+    if (!result.ok) {
+      if (result.data) setError(result.data.error);
+      else {
+        setError("An unexpected error occurred.");
+        console.log(result);
+      }
+      return;
+    }
+    const { data: authToken } = await loginApi.request(userInfo);
+    auth.logIn(authToken);
     console.log(auth.user);
   };
 
@@ -49,7 +46,7 @@ function RegisterScreen() {
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       <Screen style={styles.container}>
         <Form
-          initialValues={{ name: "", email: "", password: "" }}
+          initialValues={{ name: "", username: "", password: "" }}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
@@ -63,9 +60,9 @@ function RegisterScreen() {
           <FormField
             autoCapitalize="none"
             autoCorrect={false}
-            icon="email"
-            keyboardType="email-address"
-            name="email"
+            icon="home"
+            keyboardType="default"
+            name="username"
             placeholder="Username"
             textContentType="emailAddress"
           />

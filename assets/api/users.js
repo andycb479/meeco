@@ -1,7 +1,6 @@
 import client from "./client";
 
-const endpoint = "";
+const endpoint = "/users/addUser";
 
-const register = (userInfo) => client.post(endpoint, userInfo);
-
+const register = (userInfo) => client.post(endpoint, JSON.stringify(userInfo));
 export default { register };

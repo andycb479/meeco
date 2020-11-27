@@ -1,7 +1,6 @@
-import React from "react";
-import { Button, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-import { useFormikContext } from "formik";
 
 import {
   Form,
@@ -12,22 +11,37 @@ import {
 import Screen from "../components/Screen";
 import BackStackNavigation from "../components/BackStackNavigation";
 import incomesApi from "../api/incomes";
+import UploadScreen from "../components/UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
 });
+
+const wait = (timeout) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
+};
+
 function AddIncomeScreen({ navigation }) {
+  const [uploadVisibile, setUploadVisible] = useState(false);
+
   const handleSubmit = async (income) => {
+    setUploadVisible(true);
     const result = await incomesApi.addIncome(income);
     if (!result.ok) return alert("Could not save the listings");
-    alert("Succes");
+    wait(600).then(() => {
+      setUploadVisible(false);
+      navigation.goBack();
+    });
   };
 
   return (
     <Screen style={styles.container}>
       <BackStackNavigation style={styles.back} navigation={navigation} />
+      <UploadScreen visible={uploadVisibile} incomes />
       <Form
         initialValues={{
           title: "",
