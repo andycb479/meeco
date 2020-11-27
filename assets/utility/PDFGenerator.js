@@ -3,6 +3,7 @@ import * as Print from "expo-print";
 import * as MediaLibrary from "expo-media-library";
 import * as Sharing from "expo-sharing";
 import { Platform } from "react-native";
+import * as Notifications from "expo-notifications";
 
 var htmlIncomes = `
 <!DOCTYPE html>
@@ -37,7 +38,7 @@ var htmlIncomes = `
             <th>Title</th>
             <th>Amount</th>
             <th>Description</th>
-        </tr>`
+        </tr>`;
 var htmlExpenses = `
         <!DOCTYPE html>
         <html lang="en">
@@ -72,9 +73,18 @@ var htmlExpenses = `
                     <th>Amount</th>
                     <th>Category</th>
                     <th>Description</th>
-                </tr>`
-                
+                </tr>`;
+
 const nextHtmlPart = `</table></body></html>`;
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+    };
+  },
+});
 
 const createAndSavePDF = async (html) => {
   try {
@@ -84,7 +94,13 @@ const createAndSavePDF = async (html) => {
     } else {
       const permission = await MediaLibrary.requestPermissionsAsync();
       if (permission.granted) {
-        alert("PDF file exported")
+        Notifications.scheduleNotificationAsync({
+          content: {
+            title: "PDF file was exported!",
+            body: "Find the file in the DCIM folder.",
+          },
+          trigger: null,
+        });
         await MediaLibrary.createAssetAsync(uri);
       }
     }
@@ -92,44 +108,63 @@ const createAndSavePDF = async (html) => {
     console.error(error);
   }
 };
-const pdfRowsGeneratorIncomes =(data)=>{
-  var htmlRows ="";
-  htmlRows+= htmlIncomes;
+const pdfRowsGeneratorIncomes = (data) => {
+  var htmlRows = "";
+  htmlRows += htmlIncomes;
   data.forEach((income) => {
     htmlRows +=
-      "<tr>"
-      +"<td>" + new Date(income.date).toString().substring(4, 21) + "</td>"
-      +"<td>" + income.name + "</td>" 
-      +"<td>" + income.value+" lei" +"</td>" 
-      +"<td>" + income.description +"</td>" 
-      +"</tr>";
+      "<tr>" +
+      "<td>" +
+      new Date(income.date).toString().substring(4, 21) +
+      "</td>" +
+      "<td>" +
+      income.name +
+      "</td>" +
+      "<td>" +
+      income.value +
+      " lei" +
+      "</td>" +
+      "<td>" +
+      income.description +
+      "</td>" +
+      "</tr>";
   });
-  htmlRows+=nextHtmlPart;
+  htmlRows += nextHtmlPart;
   createAndSavePDF(htmlRows);
-}
+};
 const pdfRowsGenerator = (data) => {
-  var htmlRows ="";
-  htmlRows+= htmlExpenses;
+  var htmlRows = "";
+  htmlRows += htmlExpenses;
   data.forEach((expense) => {
     htmlRows +=
-      "<tr>"
-      +"<td>" + new Date(expense.date).toString().substring(4, 21) + "</td>"
-      +"<td>" + expense.name + "</td>" 
-      +"<td>" + expense.value+" lei" +"</td>" 
-      +"<td>" + expense.category +"</td>" 
-      +"<td>" + expense.description +"</td>" 
-      +"</tr>";
+      "<tr>" +
+      "<td>" +
+      new Date(expense.date).toString().substring(4, 21) +
+      "</td>" +
+      "<td>" +
+      expense.name +
+      "</td>" +
+      "<td>" +
+      expense.value +
+      " lei" +
+      "</td>" +
+      "<td>" +
+      expense.category +
+      "</td>" +
+      "<td>" +
+      expense.description +
+      "</td>" +
+      "</tr>";
   });
-  htmlRows+=nextHtmlPart;
+  htmlRows += nextHtmlPart;
   createAndSavePDF(htmlRows);
 };
 
-const pdfCreatorHandler = (data,incomes) => {
-    if(!incomes){
-    pdfRowsGenerator(data)
-  }
-  else{
-    pdfRowsGeneratorIncomes(data)
+const pdfCreatorHandler = (data, incomes) => {
+  if (!incomes) {
+    pdfRowsGenerator(data);
+  } else {
+    pdfRowsGeneratorIncomes(data);
   }
 };
 export default { pdfCreatorHandler };

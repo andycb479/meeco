@@ -4,7 +4,7 @@
     "slug": "Meeco",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/src/icon.png",
     "splash": {
       "image": "./assets/src/splash.png",
       "resizeMode": "cover",

@@ -20,6 +20,7 @@
     "expo-image-picker": "^9.1.1",
     "expo-linear-gradient": "~8.3.0",
     "expo-media-library": "^9.2.1",
+    "expo-notifications": "^0.7.2",
     "expo-print": "^9.1.0",
     "expo-react-native-shadow": "^1.0.3",
     "expo-secure-store": "^9.2.0",
