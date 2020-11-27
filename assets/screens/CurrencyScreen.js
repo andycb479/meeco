@@ -59,6 +59,36 @@ function CurrencyScreen({ navigation }) {
         settingValue: currencyData[0].TUR + " lei",
         iconName: "lira-sign",
       },
+      {
+        id: 8,
+        settingTitle: "JPY",
+        settingValue: currencyData[0].TUR + " lei",
+        iconName: "yen-sign",
+      },
+      {
+        id: 9,
+        settingTitle: "JPY",
+        settingValue: currencyData[0].TUR + " lei",
+        flag: "RO",
+      },
+      {
+        id: 10,
+        settingTitle: "JPY",
+        settingValue: currencyData[0].TUR + " lei",
+        flag: "RO",
+      },
+      {
+        id: 11,
+        settingTitle: "JPY",
+        settingValue: currencyData[0].TUR + " lei",
+        flag: "RO",
+      },
+      {
+        id: 12,
+        settingTitle: "JPY",
+        settingValue: currencyData[0].TUR + " lei",
+        flag: "RO",
+      },
     ];
   }
   return (

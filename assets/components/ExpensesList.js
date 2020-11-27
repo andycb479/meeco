@@ -1,6 +1,7 @@
 import React from "react";
 import { FlatList, StyleSheet, RefreshControl } from "react-native";
 import LineItemExpenses from "./LineItemExpenses";
+import LineSeparator from "../components/LineSeparator";
 
 function ExpensesList({ onRefreshHandler, refreshingState, data }) {
   return (
@@ -16,7 +17,6 @@ function ExpensesList({ onRefreshHandler, refreshingState, data }) {
       keyExtractor={(item) => item._id.toString()}
       renderItem={({ item }) => (
         <LineItemExpenses
-          onchange={onRefreshHandler}
           index={item._id}
           iconName={item.iconName}
           date={new Date(item.date).toString().substring(4, 21)}
@@ -28,6 +28,7 @@ function ExpensesList({ onRefreshHandler, refreshingState, data }) {
           incomes={false}
         />
       )}
+      ItemSeparatorComponent={() => <LineSeparator />}
     />
   );
 }

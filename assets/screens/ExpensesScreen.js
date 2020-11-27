@@ -14,14 +14,7 @@ import useApi from "../hooks/useApi";
 import expensesDiagram from "../api/expensesDiagram";
 import expenses from "../api/expenses";
 import ExportPDFButton from "../components/ExportPDFButton";
-
-const wait = (timeout, listRequest, chartRequest) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, timeout);
-    listRequest();
-    chartRequest();
-  });
-};
+import RefreshContext from "../utility/RefreshContext";
 
 function ExpensesScreen({ navigation }) {
   const { data: chartData, error, loading, request: getSums } = useApi(
@@ -33,35 +26,34 @@ function ExpensesScreen({ navigation }) {
     allExpenses.request();
   }, []);
 
-  const [refreshing, setRefreshing] = useState(false);
-
   const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-
-    wait(2000, allExpenses.request, getSums).then(() => setRefreshing(false));
+    allExpenses.request();
+    getSums();
   }, []);
 
   return (
-    <Screen>
-      <HeaderComponent navigation={navigation} />
-      {!chartData.data && allExpenses.data ? (
-        <ActivityIndicator
-          animating={allExpenses.loading && loading}
-          size={30}
-          color="red"
-        />
-      ) : (
-        <View style={styles.container}>
-          <ChartComponenent data={chartData} from="#FDF8AD" to="#F987D0" />
-          <ExportPDFButton data={allExpenses.data} />
-          <ExpensesList
-            onRefreshHandler={onRefresh}
-            refreshingState={refreshing}
-            data={allExpenses.data}
+    <RefreshContext.Provider value={{ onRefresh }}>
+      <Screen>
+        <HeaderComponent navigation={navigation} />
+        {!chartData.data && allExpenses.data ? (
+          <ActivityIndicator
+            animating={allExpenses.loading && loading}
+            size={30}
+            color="red"
           />
-        </View>
-      )}
-    </Screen>
+        ) : (
+          <View style={styles.container}>
+            <ChartComponenent data={chartData} from="#FDF8AD" to="#F987D0" />
+            <ExportPDFButton data={allExpenses.data} />
+            <ExpensesList
+              onRefreshHandler={onRefresh}
+              refreshingState={allExpenses.loading}
+              data={allExpenses.data}
+            />
+          </View>
+        )}
+      </Screen>
+    </RefreshContext.Provider>
   );
 }
 

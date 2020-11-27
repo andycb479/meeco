@@ -26,8 +26,8 @@ function AccountSettingsScreen({ navigation }) {
     },
     {
       id: 3,
-      settingTitle: "Email:",
-      settingValue: "ciobanu.andy@gmail.com",
+      settingTitle: "Username:",
+      settingValue: user.username,
     },
   ];
   return (

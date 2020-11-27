@@ -20,6 +20,7 @@ function SettingsList({ settingName, data, style = null }) {
             iconName={item.iconName ? item.iconName : null}
             settingTitle={item.settingTitle}
             settingValue={item.settingValue}
+            flag={item.flag}
           />
         )}
       />

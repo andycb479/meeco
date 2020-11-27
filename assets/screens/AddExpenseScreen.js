@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, ActivityIndicator } from "react-native";
 import * as Yup from "yup";
 
 import {
@@ -13,6 +13,7 @@ import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import BackStackNavigation from "../components/BackStackNavigation";
+import UploadScreen from "../components/UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -73,15 +74,29 @@ const categories = [
   },
 ];
 
+const wait = (timeout) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
+};
+
 function AddExpensesScreen({ navigation }) {
+  const [uploadVisibile, setUploadVisible] = useState(false);
+
   const handleSubmit = async (expense) => {
+    setUploadVisible(true);
     const result = await expensesApi.addExpense(expense);
+    wait(600).then(() => {
+      setUploadVisible(false);
+      navigation.goBack();
+    });
     if (!result.ok) return alert("Could not save the listings");
-    alert("Succes");
   };
+
   return (
     <Screen style={styles.container}>
       <BackStackNavigation style={styles.back} navigation={navigation} />
+      <UploadScreen visible={uploadVisibile} />
       <Form
         initialValues={{
           title: "",

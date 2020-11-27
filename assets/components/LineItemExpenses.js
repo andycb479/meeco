@@ -99,8 +99,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#c3c3c3",
     backgroundColor: "#f2f2f2",
   },
   expenseDetailContainer: {
