@@ -3,7 +3,13 @@ import { View, Text, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Flag from "react-native-flags";
 
-function SettingLineComponent({ iconName, settingTitle, settingValue, flag }) {
+function SettingLineComponent({
+  iconName,
+  settingTitle,
+  settingValue,
+  flag,
+  color,
+}) {
   const randomRGB = () => {
     //Color Generation Function
     const red = Math.floor(Math.random() * 190);
@@ -17,7 +23,11 @@ function SettingLineComponent({ iconName, settingTitle, settingValue, flag }) {
     <View style={styles.line}>
       <View style={styles.currencyContainer}>
         {iconName ? (
-          <FontAwesome5 name={iconName} size={20} color={randomRGB()} />
+          <FontAwesome5
+            name={iconName}
+            size={20}
+            color={!color ? randomRGB() : color}
+          />
         ) : null}
         {flag ? <Flag code={flag} size={24} /> : null}
         <Text style={{ marginTop: 3 }}>{settingTitle}</Text>

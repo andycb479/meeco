@@ -21,6 +21,7 @@ function SettingsList({ settingName, data, style = null }) {
             settingTitle={item.settingTitle}
             settingValue={item.settingValue}
             flag={item.flag}
+            color={item.color}
           />
         )}
       />
