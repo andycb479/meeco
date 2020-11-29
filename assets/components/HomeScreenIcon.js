@@ -21,7 +21,9 @@ function HomeScreenIcon({ active, title, icon, onPress }) {
           <View style={[styles.iconBox, styles.notActive]}>
             <MaterialCommunityIcons color={"#939598"} size={30} name={icon} />
           </View>
-          <Text style={styles.title}>{title}</Text>
+          <Text numberOfLines={1} style={styles.title}>
+            {title}
+          </Text>
         </View>
       )}
     </TouchableWithoutFeedback>

@@ -27,7 +27,9 @@ function ViewItemDescriptionIncomes({
               color="green"
             />
           </View>
-          <Text style={styless.itemTitle}>{title}</Text>
+          <Text numberOfLines={1} style={styless.itemTitle}>
+            {title}
+          </Text>
         </View>
         <View style={styless.itemDescriptionContainer}>
           <Text style={styless.itemDescription}>

@@ -21,8 +21,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/src/foreground.png",
+        "backgroundColor": "#3aa553"
       },
       "package" : "com.Meeco",
       "versionCode" : 1

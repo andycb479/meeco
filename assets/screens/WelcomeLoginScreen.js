@@ -1,26 +1,29 @@
 import React from "react";
 import { View, StyleSheet, Image, Button, Text } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import Screen from "../components/Screen";
 
 function WelcomeLoginScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Image style={styles.logo} source={require("../src/logo.png")} />
-      <View style={{ paddingTop: 330 }}>
-        <TouchableHighlight
-          style={[styles.buttons, { backgroundColor: "#3aa553" }]}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={[styles.buttons, { backgroundColor: "#373435" }]}
-          onPress={() => navigation.navigate("SignUp")}
-        >
-          <Text style={styles.buttonText}>Sign up</Text>
-        </TouchableHighlight>
+    <Screen>
+      <View style={styles.container}>
+        <Image style={styles.logo} source={require("../src/logo.png")} />
+        <View>
+          <TouchableHighlight
+            style={[styles.buttons, { backgroundColor: "#3aa553" }]}
+            onPress={() => navigation.navigate("Login")}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={[styles.buttons, { backgroundColor: "#373435" }]}
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            <Text style={styles.buttonText}>Sign up</Text>
+          </TouchableHighlight>
+        </View>
       </View>
-    </View>
+    </Screen>
   );
 }
 
@@ -28,10 +31,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f2f2f2",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
-    paddingTop: 150,
-    paddingBottom: 70,
   },
   logo: {
     width: 200,
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 20,
+    fontWeight: "bold",
   },
 });
 export default WelcomeLoginScreen;

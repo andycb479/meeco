@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  BackHandler,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from "../components/Screen";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -22,6 +28,8 @@ function HomeScreen({ navigation }) {
     setActiveIndex(active);
     setActiveAmount(data[active.title]);
   };
+
+  BackHandler.addEventListener("hardwareBackPress", () => true);
 
   const [activeIndex, setActiveIndex] = useState({ title: "Car", icon: "car" });
   const [activeAmount, setActiveAmount] = useState();

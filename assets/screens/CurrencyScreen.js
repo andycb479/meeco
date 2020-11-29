@@ -97,7 +97,7 @@ function CurrencyScreen({ navigation }) {
     ];
   }
   return (
-    <Screen>
+    <Screen style={{ flex: 1 }}>
       <View style={styles.topBar}>
         <BackStackNavigation style={{ flex: 1 }} navigation={navigation} />
         <Text style={styles.text}>{"\t"}Currency</Text>
@@ -124,6 +124,7 @@ function CurrencyScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 30,
+    height: "90%",
   },
   topBar: {
     width: "100%",

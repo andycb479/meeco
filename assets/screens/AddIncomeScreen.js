@@ -15,7 +15,7 @@ import UploadScreen from "../components/UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
-  price: Yup.number().required().min(1).max(10000).label("Price"),
+  price: Yup.number().required().min(1).max(100000).label("Amount"),
   description: Yup.string().label("Description"),
 });
 
@@ -66,7 +66,12 @@ function AddIncomeScreen({ navigation }) {
           numberOfLines={3}
           placeholder="Description"
         />
-        <SubmitButton from="#20bf5a" to="#01bbec" title="Add Income" />
+        <SubmitButton
+          disabled={uploadVisibile}
+          from="#20bf5a"
+          to="#01bbec"
+          title="Add Income"
+        />
       </Form>
     </Screen>
   );

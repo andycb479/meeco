@@ -31,7 +31,9 @@ function ViewItemDescription({
           <View style={styless.iconBorder}>
             <MaterialCommunityIcons color={"#666"} size={33} name={iconName} />
           </View>
-          <Text style={styless.itemTitle}>{title}</Text>
+          <Text numberOfLines={2} style={styless.itemTitle}>
+            {title}
+          </Text>
         </View>
         <View style={styless.itemDescriptionContainer}>
           <Text style={styless.itemDescription}>
@@ -80,6 +82,7 @@ const styless = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     color: "#555",
+    width: "80%",
   },
   itemDescription: {
     fontSize: 18,

@@ -37,7 +37,7 @@ function LoginScreen(props) {
         validationSchema={validationSchema}
       >
         <ErrorMessage
-          error="Invalid email and/or password."
+          error="Invalid username and/or password."
           visible={loginFailed}
         />
         <FormField

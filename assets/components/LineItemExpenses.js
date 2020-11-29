@@ -42,7 +42,10 @@ function LineItemExpenses({
               </View>
             </View>
             <View style={styles.expenseDetailInnerContainer}>
-              <Text style={styles.expenseDetailInnerContainerTitle}>
+              <Text
+                numberOfLines={1}
+                style={styles.expenseDetailInnerContainerTitle}
+              >
                 {title}
               </Text>
               <Text style={styles.expenseDetailInnerContainerDate}>{date}</Text>

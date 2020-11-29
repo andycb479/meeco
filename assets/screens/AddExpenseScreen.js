@@ -17,7 +17,7 @@ import UploadScreen from "../components/UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
-  price: Yup.number().required().min(1).max(10000).label("Price"),
+  price: Yup.number().required().min(1).max(100000).label("Amount"),
   description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
   images: Yup.array().label("images"),
@@ -87,8 +87,8 @@ function AddExpensesScreen({ navigation }) {
     setUploadVisible(true);
     const result = await expensesApi.addExpense(expense);
     wait(600).then(() => {
-      setUploadVisible(false);
       navigation.goBack();
+      setUploadVisible(false);
     });
     if (!result.ok) return alert("Could not save the listings");
   };
@@ -132,7 +132,12 @@ function AddExpensesScreen({ navigation }) {
           numberOfLines={3}
           placeholder="Description"
         />
-        <SubmitButton from="#ec008c" to="#f9ed32" title="Add Expense" />
+        <SubmitButton
+          disabled={uploadVisibile}
+          from="#ec008c"
+          to="#f9ed32"
+          title="Add Expense"
+        />
       </Form>
     </Screen>
   );
