@@ -1,12 +1,21 @@
 import React from "react";
 import { View, StyleSheet, Modal } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import LottieView from "lottie-react-native";
+import ConfettiCannon from "react-native-confetti-cannon";
 
-function UploadScreen({ visible = false, incomes }) {
+function UploadScreen({ visible = false, incomes, count = 1 }) {
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.container}>
+        {count % 2 !== 0 ? (
+          <ConfettiCannon
+            count={200}
+            origin={{ x: 15, y: -20 }}
+            fallSpeed={3500}
+            colors={["#20bf5a", "#01bbec"]}
+          />
+        ) : null}
+
         {!incomes ? (
           <LottieView
             autoPlay

@@ -40,9 +40,7 @@ function AccountSettingsScreen({ navigation }) {
           </View>
           <Image
             style={styles.logo}
-            source={{
-              uri: "https://reactnative.dev/img/tiny_logo.png",
-            }}
+            source={require("../src/account.png")}
           ></Image>
         </View>
 
@@ -93,8 +91,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 150,
+    height: 150,
     borderRadius: 100,
   },
   buttons: {

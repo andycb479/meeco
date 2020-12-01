@@ -1,20 +1,34 @@
-import { exp } from "react-native-reanimated";
 import client from "./client";
+import defaultImg from "../src/Meeco_Img.png";
+import { Image } from "react-native";
 
 const endpoint = "/expenses";
 
 const getExpenses = () => client.get(endpoint);
 
 const addExpense = (expense) => {
-  var datas = {
-    iconName: expense.category.icon,
-    category: expense.category.label,
-    name: expense.title,
-    value: expense.price,
-    description: expense.description,
-    imageURI: expense.images[0],
+  var image = {
+    uri:
+      expense.images[0] == null
+        ? Image.resolveAssetSource(defaultImg).uri
+        : expense.images[0],
+    type: "image/jpeg",
+    name: "image",
   };
-  return client.post(endpoint, JSON.stringify(datas));
+
+  const data = new FormData();
+  data.append("iconName", expense.category.icon);
+  data.append("category", expense.category.label);
+  data.append("name", expense.title);
+  data.append("value", expense.price);
+  data.append("description", expense.description);
+  data.append("imageURI", image);
+
+  const headers = {
+    "Content-Type": "multipart/form-data",
+  };
+
+  return client.post(endpoint, data, { headers });
 };
 
 const deleteExpense = (id) => {

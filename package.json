@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.2.1",
+    "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.10.2",
     "@react-navigation/drawer": "^5.11.2",
@@ -34,6 +35,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-chart-kit": "^6.6.1",
+    "react-native-confetti-cannon": "^1.5.1",
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-flags": "^1.0.0",
     "react-native-gesture-handler": "~1.7.0",

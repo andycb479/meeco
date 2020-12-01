@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
@@ -12,6 +12,7 @@ import Screen from "../components/Screen";
 import BackStackNavigation from "../components/BackStackNavigation";
 import incomesApi from "../api/incomes";
 import UploadScreen from "../components/UploadScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -25,23 +26,47 @@ const wait = (timeout) => {
   });
 };
 
+const storeIncomeCount = async (value) => {
+  await AsyncStorage.setItem("incomesCount", value);
+};
+
+const getIncomesCount = async () => {
+  const value = await AsyncStorage.getItem("incomesCount");
+  if (!value) {
+    storeIncomeCount("0");
+    return 0;
+  } else {
+    return parseInt(value);
+  }
+};
+
 function AddIncomeScreen({ navigation }) {
   const [uploadVisibile, setUploadVisible] = useState(false);
+  const [count, setCount] = useState(0);
 
   const handleSubmit = async (income) => {
     setUploadVisible(true);
     const result = await incomesApi.addIncome(income);
     if (!result.ok) return alert("Could not save the listings");
+    var value = count;
+    value += 1;
+    storeIncomeCount(value.toString());
     wait(600).then(() => {
       setUploadVisible(false);
       navigation.goBack();
     });
   };
 
+  useEffect(() => {
+    getIncomesCount().then((incomeCount) => {
+      setCount(incomeCount);
+    });
+  }, []);
+
   return (
     <Screen style={styles.container}>
       <BackStackNavigation style={styles.back} navigation={navigation} />
-      <UploadScreen visible={uploadVisibile} incomes />
+      <UploadScreen visible={uploadVisibile} incomes count={count} />
       <Form
         initialValues={{
           title: "",
