@@ -7,7 +7,7 @@ function UploadScreen({ visible = false, incomes, count = 1 }) {
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.container}>
-        {count % 2 !== 0 ? (
+        {count % 2 !== 0 && incomes ? (
           <ConfettiCannon
             count={200}
             origin={{ x: 15, y: -20 }}

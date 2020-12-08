@@ -17,16 +17,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "meeco"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/src/foreground.png",
         "backgroundColor": "#3aa553"
       },
-      "package" : "com.Meeco",
-      "versionCode" : 1
-
+      "package": "com.Meeco",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

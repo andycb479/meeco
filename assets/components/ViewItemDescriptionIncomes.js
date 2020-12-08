@@ -12,7 +12,7 @@ function ViewItemDescriptionIncomes({
 }) {
   return (
     <View style={styless.container}>
-      <View style={{ position: "absolute", top: 25, left: 5 }}>
+      <View style={{ position: "absolute" }}>
         <TouchableOpacity onPress={() => onPress(false)}>
           <MaterialCommunityIcons name="chevron-left" size={38} color="green" />
         </TouchableOpacity>

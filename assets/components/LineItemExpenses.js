@@ -62,12 +62,7 @@ function LineItemExpenses({
               </Text>
             )}
           </View>
-          <Modal
-            visible={modalVisible}
-            animationType="slide"
-            transparent
-            statusBarTranslucent
-          >
+          <Modal visible={modalVisible} animationType="slide" transparent>
             {!incomes ? (
               <ViewItemDescription
                 onPress={setModalVisible}
